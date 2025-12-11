@@ -1,0 +1,58 @@
+﻿@page "/monkeys"
+
+<h3>Monkeys</h3>
+
+@if (monkeyss == null || monkeyss.Count == 0)
+{
+    <p>No monkeys available</p>
+}
+else
+{
+    @foreach (var monkey in monkeyss)
+    {
+        <div>
+            <h4>@monkey.Name</h4>
+            <p>@monkey.Location</p>
+
+            @if (!string.IsNullOrWhiteSpace(monkey.Image))
+            {
+                <img src="@monkey.Image" alt="@monkey.Name" width="200" />
+            }
+            else
+            {
+                <p>No image available</p>
+            }
+        </div>
+    }
+}
+
+@code {
+    public class Monkeyss
+    {
+        public string Name { get; set; }
+        public string Location { get; set; }
+        public string Image { get; set; }
+    }
+
+    List<Monkeyss> monkeyss = new()
+    {
+        new Monkeyss
+        {
+            Name = "Baboon",
+            Location = "Africa and Asia",
+            Image = "https://www.tierparkstadthaag.at/wp-content/uploads/elementor/thumbs/Pavian-4574RR-r41m26qocf9giccjzukt37n0vrzb7qkr683wttdkgi.jpg"
+        },
+        new Monkeyss
+        {
+            Name = "Capuchin Monkey",
+            Location = "Central and South America",
+            Image = "https://lazoo.org/wp-content/uploads/2023/05/Capuchin-JEP_5945-2048x1463.jpg"
+        },
+        new Monkeyss
+        {
+            Name = "Blue Monkey",
+            Location = "Central and East Africa",
+            Image = "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/bluemonkey.jpg"
+        }
+    };
+}
